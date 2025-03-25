@@ -14,11 +14,12 @@ readonly IREE_COMPILE="$(which iree-compile)"
 readonly CHIP="$1"
 shift 1
 
-readonly WORKING_DIR="${WORKING_DIR:-${SCRIPT_DIR}}"
+readonly WORKING_DIR="${WORKING_DIR:-${SCRIPT_DIR}/tmp}"
+readonly PREFIX="${PREFIX:-base}"
 
 set -x
 
 "${SCRIPT_DIR}/compile-8b-base.sh" "$IREE_COMPILE" "$CHIP" \
   "${SCRIPT_DIR}/base_ir/8b_fp16_nondecomposed.mlir" \
-  -o "${WORKING_DIR}/tmp/8b_fp16_nondecomposed.vmfb" \
+  -o "${WORKING_DIR}/${PREFIX}.8b_fp16_nondecomposed.vmfb" \
   "$@"

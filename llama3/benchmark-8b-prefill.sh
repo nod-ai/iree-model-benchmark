@@ -5,14 +5,16 @@
 set -euo pipefail
 
 if (( $# != 1 && $# != 2 )); then
-  echo "usage: $0 <hip-device-id> [<ipra-path-prefix>]"
+  echo "usage: $0 <hip-device-id> [<irpa-path>]"
   exit 1
 fi
 
 readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)"
+readonly WORKING_DIR="${WORKING_DIR:-${SCRIPT_DIR}/tmp}"
+readonly PREFIX="${PREFIX:-base}"
 readonly IREE_BENCHMARK="$(which iree-benchmark-module)"
 readonly HIP_DEVICE="$1"
-readonly INPUT_PATH="${SCRIPT_DIR}/8b_npys/prefill_args_bs4_128_stride_32"
+readonly INPUT_PATH="${INPUT_PATH:-${SCRIPT_DIR}/8b_npys/prefill_args_bs4_128_stride_32}"
 
 readonly INPUTS="--input=@${INPUT_PATH}/tokens.npy \
   --input=@${INPUT_PATH}/seq_lens.npy \
@@ -22,8 +24,7 @@ readonly INPUTS="--input=@${INPUT_PATH}/tokens.npy \
 # IRPA file:
 # Size: 16061181952
 # md5sum: 8f4685d6799298609152dd509ba32e88
-readonly IRPA_PATH_PREFIX="${2:-/data/shark}"
-readonly IRPA="${IRPA_PATH_PREFIX}/8b_f16.irpa"
+readonly IRPA="${2:-/data/shark/8b_fp16.irpa}"
 
 echo "Using IRPA file:"
 stat -c "%y %s %n" "${IRPA}"
@@ -35,7 +36,7 @@ set -x
   --device="hip://${HIP_DEVICE}" \
   --device_allocator=caching \
   --hip_use_streams=true \
-  --module="${SCRIPT_DIR}/tmp/8b_fp16_nondecomposed.vmfb" \
+  --module="${WORKING_DIR}/${PREFIX}.8b_fp16_nondecomposed.vmfb" \
   --parameters=model="${IRPA}" \
   --function=prefill_bs4 \
   $INPUTS \
