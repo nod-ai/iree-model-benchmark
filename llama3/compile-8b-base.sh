@@ -30,11 +30,7 @@ set -x
   --iree-hal-target-backends=rocm \
   --iree-hip-target=$CHIP \
   --iree-hal-target-device=hip \
-  --iree-dispatch-creation-enable-aggressive-fusion=true \
-  --iree-global-opt-propagate-transposes=true \
-  --iree-opt-aggressively-propagate-transposes=true \
-  --iree-opt-data-tiling=false \
-  --iree-preprocessing-pass-pipeline='builtin.module(util.func(iree-preprocessing-generalize-linalg-matmul-experimental))' \
+  --iree-opt-level=O3 \
   --iree-hal-indirect-command-buffers=true \
   --iree-stream-resource-memory-model=discrete \
   --iree-hal-memoization=true \
