@@ -34,5 +34,4 @@ set -x
   --iree-hal-indirect-command-buffers=true \
   --iree-stream-resource-memory-model=discrete \
   --iree-hal-memoization=true \
-  --iree-opt-strip-assertions \
   "$@"
