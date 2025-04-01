@@ -26,6 +26,8 @@ shift 3
 
 set -x
 
+mkdir -p tmp
+
 "$IREE_COMPILE" "$INPUT" \
   --iree-hal-target-backends=rocm \
   --iree-hip-target=$CHIP \
