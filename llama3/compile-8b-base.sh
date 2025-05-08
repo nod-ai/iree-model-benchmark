@@ -13,6 +13,7 @@ if [ ! -f "$IREE_COMPILE" ] ; then
   echo "Specified iree-compile binary not found: ${IREE_COMPILE}"
   exit 1
 fi
+readonly USE_TRACY="${USE_TRACY:-0}"
 
 readonly CHIP="$2"
 
@@ -26,12 +27,25 @@ shift 3
 
 set -x
 
-"$IREE_COMPILE" "$INPUT" \
-  --iree-hal-target-backends=rocm \
-  --iree-hip-target=$CHIP \
-  --iree-hal-target-device=hip \
-  --iree-opt-level=O3 \
-  --iree-hal-indirect-command-buffers=true \
-  --iree-stream-resource-memory-model=discrete \
-  --iree-hal-memoization=true \
-  "$@"
+if (( "${USE_TRACY}" == "1")); then
+    "$IREE_COMPILE" "$INPUT" \
+		    --iree-hal-target-backends=rocm \
+		    --iree-hip-target=$CHIP \
+		    --iree-hal-target-device=hip \
+		    --iree-opt-level=O3 \
+		    --iree-hal-indirect-command-buffers=true \
+		    --iree-stream-resource-memory-model=discrete \
+		    --iree-hal-memoization=true \
+		    --iree-hal-executable-debug-level=3 \
+		    "$@"
+else
+    "$IREE_COMPILE" "$INPUT" \
+		    --iree-hal-target-backends=rocm \
+		    --iree-hip-target=$CHIP \
+		    --iree-hal-target-device=hip \
+		    --iree-opt-level=O3 \
+		    --iree-hal-indirect-command-buffers=true \
+		    --iree-stream-resource-memory-model=discrete \
+		    --iree-hal-memoization=true \
+		    "$@"
+fi

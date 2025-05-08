@@ -15,6 +15,8 @@ readonly PREFIX="${PREFIX:-base}"
 readonly IREE_BENCHMARK="$(which iree-benchmark-module)"
 readonly HIP_DEVICE="$1"
 readonly INPUT_PATH="${INPUT_PATH:-${SCRIPT_DIR}/inputs/8b_fp16/args_bs4_128}"
+readonly USE_TRACY="${USE_TRACY:-0}"
+readonly IREE_TRACY_CAPTURE="$(which iree-tracy-capture)"
 
 readonly -a INPUTS=(
   "--input=@${INPUT_PATH}/prefill_token_ids.npy"
@@ -34,12 +36,21 @@ stat -c "%y %s %n" "${IRPA}"
 
 set -x
 
-"$IREE_BENCHMARK" \
-  --device="hip://${HIP_DEVICE}" \
-  --device_allocator=caching \
-  --hip_use_streams=true \
-  --module="${WORKING_DIR}/${PREFIX}.8b_fp16.vmfb" \
-  --parameters=model="${IRPA}" \
-  --function=prefill_bs4 \
-  "${INPUTS[@]}" \
-  --benchmark_repetitions=3
+run_benchmark() {
+    "$IREE_BENCHMARK" \
+	--device="hip://${HIP_DEVICE}" \
+	--device_allocator=caching \
+	--hip_use_streams=true \
+	--module="${WORKING_DIR}/${PREFIX}.8b_fp16.vmfb" \
+	--parameters=model="${IRPA}" \
+	--function=prefill_bs4 \
+	"${INPUTS[@]}" \
+	--benchmark_repetitions=3
+}
+
+if (( "${USE_TRACY}" == "1")); then
+    TRACY_PORT=8087 IREE_PY_RUNTIME=tracy TRACY_NO_EXIT=1 run_benchmark &
+    "${IREE_TRACY_CAPTURE}" -f -p 8087 -o "${WORKING_DIR}/${PREFIX}.8b_fp8.tracy"
+else
+    run_benchmark
+fi
