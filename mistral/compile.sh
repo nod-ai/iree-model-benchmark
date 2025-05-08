@@ -20,6 +20,6 @@ readonly PREFIX="${PREFIX:-base}"
 set -x
 
 "${SCRIPT_DIR}/compile-base.sh" "$IREE_COMPILE" "$CHIP" \
-  "${SCRIPT_DIR}/base_ir/quark_mistral_nemo_16x128.mlir" \
+  "${SCRIPT_DIR}/base_ir/quark_mistral_nemo_fp8gemm_fp16.mlir" \
   -o "${WORKING_DIR}/${PREFIX}.vmfb" \
   "$@"
