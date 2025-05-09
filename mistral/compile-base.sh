@@ -27,7 +27,7 @@ shift 3
 
 set -x
 
-if (( "${USE_TRACY}" == "1")); then
+if (("${USE_TRACY}" == "1")); then
     "$IREE_COMPILE" "$INPUT" \
 		    --iree-hal-target-backends=rocm \
 		    --iree-hip-target=$CHIP \

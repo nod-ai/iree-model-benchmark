@@ -18,10 +18,10 @@ readonly USE_TRACY="${USE_TRACY:-0}"
 readonly IREE_TRACY_CAPTURE="$(which iree-tracy-capture)"
 
 readonly -a INPUTS=(
-  "--input=128x1xsi64"
-  "--input=128xsi64"
-  "--input=128xsi64"
-  "--input=128x32xsi64"
+  "--input=32x1xsi64"
+  "--input=32xsi64"
+  "--input=32xsi64"
+  "--input=32x32xsi64"
   "--input=1024x2621440xf8E4M3FNUZ"
 )
 
@@ -43,7 +43,7 @@ run_benchmark() {
 	--hip_use_streams=true \
 	--module="${WORKING_DIR}/${PREFIX}.vmfb" \
 	--parameters=model="${IRPA}" \
-	--function=decode_bs128 \
+	--function=decode_bs32 \
 	"${INPUTS[@]}" \
 	--benchmark_repetitions=3
 }
