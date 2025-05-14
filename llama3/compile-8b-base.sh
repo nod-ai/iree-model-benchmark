@@ -33,6 +33,7 @@ if (( "${USE_TRACY}" == "1")); then
 		    --iree-hip-target=$CHIP \
 		    --iree-hal-target-device=hip \
 		    --iree-opt-level=O3 \
+		    --iree-dispatch-creation-propagate-collapse-across-expands=true \
 		    --iree-hal-indirect-command-buffers=true \
 		    --iree-stream-resource-memory-model=discrete \
 		    --iree-hal-memoization=true \
@@ -44,6 +45,7 @@ else
 		    --iree-hip-target=$CHIP \
 		    --iree-hal-target-device=hip \
 		    --iree-opt-level=O3 \
+		    --iree-dispatch-creation-propagate-collapse-across-expands=true \
 		    --iree-hal-indirect-command-buffers=true \
 		    --iree-stream-resource-memory-model=discrete \
 		    --iree-hal-memoization=true \

@@ -57,8 +57,8 @@ run_benchmark() {
 }
 
 if (( "${USE_TRACY}" == "1")); then
-    IREE_PY_RUNTIME=tracy TRACY_NO_EXIT=1 run_benchmark &
-    "${IREE_TRACY_CAPTURE}" -f -o "${WORKING_DIR}/${PREFIX}.8b_fp8.tracy"
+    TRACY_PORT=8087 IREE_PY_RUNTIME=tracy TRACY_NO_EXIT=1 run_benchmark &
+    "${IREE_TRACY_CAPTURE}" -f -p 8087 -o "${WORKING_DIR}/${PREFIX}.decode.8b_fp8.tracy"
 else
     run_benchmark
 fi
