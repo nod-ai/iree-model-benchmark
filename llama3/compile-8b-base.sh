@@ -34,6 +34,7 @@ if (( "${USE_TRACY}" == "1")); then
 		    --iree-hal-target-device=hip \
 		    --iree-opt-level=O3 \
 		    --iree-dispatch-creation-propagate-collapse-across-expands=true \
+		    --iree-codegen-enable-default-tuning-specs=true \
 		    --iree-hal-indirect-command-buffers=true \
 		    --iree-stream-resource-memory-model=discrete \
 		    --iree-hal-memoization=true \
@@ -46,6 +47,7 @@ else
 		    --iree-hal-target-device=hip \
 		    --iree-opt-level=O3 \
 		    --iree-dispatch-creation-propagate-collapse-across-expands=true \
+		    --iree-codegen-enable-default-tuning-specs=true \
 		    --iree-hal-indirect-command-buffers=true \
 		    --iree-stream-resource-memory-model=discrete \
 		    --iree-hal-memoization=true \
