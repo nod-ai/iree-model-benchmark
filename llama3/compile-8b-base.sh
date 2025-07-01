@@ -37,6 +37,7 @@ if (( "${USE_TRACY}" == "1")); then
 		    --iree-codegen-enable-default-tuning-specs=true \
 		    --iree-hal-indirect-command-buffers=true \
 		    --iree-stream-resource-memory-model=discrete \
+		    --iree-hip-specialize-dispatches \
 		    --iree-hal-memoization=true \
 		    --iree-hal-executable-debug-level=3 \
 		    "$@"
@@ -50,6 +51,7 @@ else
 		    --iree-codegen-enable-default-tuning-specs=true \
 		    --iree-hal-indirect-command-buffers=true \
 		    --iree-stream-resource-memory-model=discrete \
+		    --iree-hip-specialize-dispatches \
 		    --iree-hal-memoization=true \
 		    "$@"
 fi
