@@ -20,6 +20,6 @@ readonly PREFIX="${PREFIX:-base}"
 set -x
 
 "${SCRIPT_DIR}/compile-405b-fp4-base.sh" "$IREE_COMPILE" "$CHIP" \
-  "${SCRIPT_DIR}/base_ir/llama3_fp4_fp16attncach_fix.mlir" \
+  "${SCRIPT_DIR}/base_ir/llama3.1_fp4mma_fp16attn_fp8cache.mlir" \
   -o "${WORKING_DIR}/${PREFIX}.405b_fp4.vmfb" \
   "$@"

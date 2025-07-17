@@ -23,7 +23,7 @@ readonly -a INPUTS=(
     "--input=4xi64"
     "--input=4xi64"
     "--input=4x128xi64"
-    "--input=128x8257536xf16"
+    "--input=128x8257536xf8E4M3FN"
 )
 
 readonly IRPA_PATH="${2:-/shark-dev/405b/instruct/weights/fp4/fp4_2025_07_10_fn.irpa}"
