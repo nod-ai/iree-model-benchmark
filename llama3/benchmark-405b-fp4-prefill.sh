@@ -16,7 +16,8 @@ readonly PREFIX="${PREFIX:-base}"
 readonly IREE_BENCHMARK="$(which iree-benchmark-module)"
 readonly HIP_DEVICE="$1"
 readonly USE_TRACY="${USE_TRACY:-0}"
-readonly IREE_TRACY_CAPTURE="$(which iree-tracy-capture)"
+readonly TRACY_CAPTURE="${TRACY_CAPTURE:-$(which iree-tracy-capture)}"
+readonly TRACY_PORT=${TRACY_PORT:-8087}
 
 readonly -a INPUTS=(
   "--input=4x128xi64"
@@ -43,8 +44,8 @@ run_benchmark() {
 }
 
 if (( "${USE_TRACY}" == "1")); then
-    TRACY_PORT=8087 IREE_PY_RUNTIME=tracy TRACY_NO_EXIT=1 run_benchmark &
-    "${IREE_TRACY_CAPTURE}" -f -p 8087 -o "${WORKING_DIR}/${PREFIX}.prefill.405b_fp4.tracy"
+    IREE_PY_RUNTIME=tracy TRACY_NO_EXIT=1 run_benchmark &
+    "${TRACY_CAPTURE}" -f -p ${TRACY_PORT} -o "${WORKING_DIR}/${PREFIX}.prefill.405b_fp4.tracy"
 else
     run_benchmark
 fi

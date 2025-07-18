@@ -16,13 +16,14 @@ readonly PREFIX="${PREFIX:-base}"
 readonly IREE_BENCHMARK="$(which iree-benchmark-module)"
 readonly HIP_DEVICE="$1"
 readonly USE_TRACY="${USE_TRACY:-0}"
-readonly IREE_TRACY_CAPTURE="$(which iree-tracy-capture)"
+readonly TRACY_CAPTURE="${TRACY_CAPTURE:-$(which iree-tracy-capture)}"
+readonly TRACY_PORT=${TRACY_PORT:-8087}
 
 readonly -a INPUTS=(
-    "--input=4x1xi64"
-    "--input=4xi64"
-    "--input=4xi64"
-    "--input=4x128xi64"
+    "--input=16x1xi64"
+    "--input=16xi64"
+    "--input=16xi64"
+    "--input=16x128xi64"
     "--input=128x8257536xf8E4M3FN"
 )
 
@@ -38,14 +39,14 @@ run_benchmark() {
 	--hip_use_streams=true \
 	--module="${WORKING_DIR}/${PREFIX}.405b_fp4.vmfb" \
 	--parameters=model="${IRPA_PATH}" \
-	--function=decode_bs4 \
+	--function=decode_bs16 \
 	"${INPUTS[@]}" \
 	--benchmark_repetitions=3
 }
 
 if (( "${USE_TRACY}" == "1")); then
-    TRACY_PORT=8087 IREE_PY_RUNTIME=tracy TRACY_NO_EXIT=1 run_benchmark &
-    "${IREE_TRACY_CAPTURE}" -f -p 8087 -o "${WORKING_DIR}/${PREFIX}.decode.405b_fp4.tracy"
+    IREE_PY_RUNTIME=tracy TRACY_NO_EXIT=1 run_benchmark &
+    "${TRACY_CAPTURE}" -f -p ${TRACY_PORT} -o "${WORKING_DIR}/${PREFIX}.decode.405b_fp4.tracy"
 else
     run_benchmark
 fi
