@@ -15,7 +15,7 @@ readonly PREFIX="${PREFIX:-base}"
 readonly IREE_BENCHMARK="$(which iree-benchmark-module)"
 readonly HIP_DEVICE="$1"
 readonly SEQ_LENGTH="$2"
-readonly INPUT_PATH="${INPUT_PATH:-${SCRIPT_DIR}/inputs/8b_fp8/args_bs4_128}"
+readonly INPUT_PATH="${INPUT_PATH:-${SCRIPT_DIR}/inputs/8b_fp8/args_bs4_${SEQ_LENGTH}}"
 readonly USE_TRACY="${USE_TRACY:-0}"
 readonly IREE_TRACY_CAPTURE="$(which iree-tracy-capture)"
 
