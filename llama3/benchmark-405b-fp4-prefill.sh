@@ -18,15 +18,18 @@ readonly HIP_DEVICE="$1"
 readonly USE_TRACY="${USE_TRACY:-0}"
 readonly TRACY_CAPTURE="${TRACY_CAPTURE:-$(which iree-tracy-capture)}"
 readonly TRACY_PORT=${TRACY_PORT:-8087}
+readonly TOKEN_LEN="${TOKEN_LEN:-2500}"
+
+readonly INPUT_PATH="${INPUT_PATH:-${SCRIPT_DIR}/inputs/405b_fp4/args_bs4_${TOKEN_LEN}}"
 
 readonly -a INPUTS=(
-  "--input=4x128xi64"
-  "--input=4xi64"
-  "--input=4x4xi64"
-  "--input=128x8257536xf8E4M3FN"
+  "--input=@${INPUT_PATH}/prefill_input0_tokens.npy"
+  "--input=@${INPUT_PATH}/prefill_input1_seq_lens.npy"
+  "--input=@${INPUT_PATH}/prefill_input2_seq_block_ids.npy"
+  "--input=@${INPUT_PATH}/prefill_input3_kv_cache_state.npy"
 )
 
-readonly IRPA_PATH="${2:-/shark-dev/405b/instruct/weights/fp4/fp4_2025_07_10_fn.irpa}"
+readonly IRPA_PATH="${2:-/shark-dev/llama3.1/405b/instruct/weights/fp4/fp4_2025_07_10_fn.irpa}"
 
 echo "Using IRPA file:"
 stat -c "%y %s %n" "${IRPA_PATH}"

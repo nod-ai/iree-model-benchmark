@@ -18,16 +18,19 @@ readonly HIP_DEVICE="$1"
 readonly USE_TRACY="${USE_TRACY:-0}"
 readonly TRACY_CAPTURE="${TRACY_CAPTURE:-$(which iree-tracy-capture)}"
 readonly TRACY_PORT=${TRACY_PORT:-8087}
+readonly TOKEN_LEN="${TOKEN_LEN:-2500}"
+
+readonly INPUT_PATH="${INPUT_PATH:-${SCRIPT_DIR}/inputs/405b_fp4/args_bs4_${TOKEN_LEN}}"
 
 readonly -a INPUTS=(
-    "--input=16x1xi64"
-    "--input=16xi64"
-    "--input=16xi64"
-    "--input=16x128xi64"
-    "--input=128x8257536xf8E4M3FN"
+  "--input=@${INPUT_PATH}/decode_input0_tokens.npy"
+  "--input=@${INPUT_PATH}/decode_input1_seq_lens.npy"
+  "--input=@${INPUT_PATH}/decode_input2_start_positions.npy"
+  "--input=@${INPUT_PATH}/decode_input3_seq_block_ids.npy"
+  "--input=@${INPUT_PATH}/decode_input4_kv_cache_state.npy"
 )
 
-readonly IRPA_PATH="${2:-/shark-dev/405b/instruct/weights/fp4/fp4_2025_07_10_fn.irpa}"
+readonly IRPA_PATH="${2:-/shark-dev/llama3.1/405b/instruct/weights/fp4/fp4_2025_07_10_fn.irpa}"
 
 echo "Using IRPA file:"
 stat -c "%y %s %n" "${IRPA_PATH}"
@@ -39,7 +42,7 @@ run_benchmark() {
 	--hip_use_streams=true \
 	--module="${WORKING_DIR}/${PREFIX}.405b_fp4.vmfb" \
 	--parameters=model="${IRPA_PATH}" \
-	--function=decode_bs16 \
+	--function=decode_bs4 \
 	"${INPUTS[@]}" \
 	--benchmark_repetitions=3
 }
