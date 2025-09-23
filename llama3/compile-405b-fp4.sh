@@ -16,10 +16,11 @@ shift 1
 
 readonly WORKING_DIR="${WORKING_DIR:-${SCRIPT_DIR}/tmp}"
 readonly PREFIX="${PREFIX:-base}"
+readonly MLIR_FILE="${MLIR_FILE:-405b_fp4_asm}"
 
 set -x
 
 "${SCRIPT_DIR}/compile-405b-fp4-base.sh" "$IREE_COMPILE" "$CHIP" \
-  "${SCRIPT_DIR}/base_ir/405b_fp4_asm.mlir" \
+  "${SCRIPT_DIR}/base_ir/${MLIR_FILE}.mlir" \
   -o "${WORKING_DIR}/${PREFIX}.405b_fp4.vmfb" \
   "$@"
