@@ -19,4 +19,4 @@
 1. Benchmark decode:
    * fp16: `./benchmark-8b-decode.sh 0 /data/irpa`
    * fp8: `./benchmark-8b-decode-fp8.sh 0 [128|2048] /data/irpa`
-   * 405b_fp4: `./benchmark-405b-fp4-prefill.sh 0 /data/irpa`
+   * 405b_fp4: `./benchmark-405b-fp4-decode.sh 0 /data/irpa`
