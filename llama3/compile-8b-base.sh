@@ -44,10 +44,7 @@ IREE_COMPILATION_FLAGS=(
 
 if (( "${DATA_TILING}" == "1")); then
 	IREE_COMPILATION_FLAGS+=(
-		"--iree-opt-data-tiling=false"
 		"--iree-dispatch-creation-data-tiling"
-		"--iree-hip-encoding-layout-resolver=data-tiling"
-		"--iree-llvmgpu-test-combine-layout-transformation"
 	)
 fi
 
