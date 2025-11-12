@@ -27,7 +27,7 @@ set -x
 
 CMD_ARGS=(
   "${SCRIPT_DIR}/compile-punet-base.sh" "$IREE_COMPILE" "$CHIP"
-  "${SCRIPT_DIR}/base_ir/punet_07_18.mlir"
+  "${SCRIPT_DIR}/base_ir/stable_diffusion_xl_base_1_0_scheduled_unet_bs1_64_1024x1024_i8.mlir"
 )
 
 if [ -n "$SPEC_FILE" ]; then

@@ -31,13 +31,15 @@ run_benchmark() {
     --device_allocator=caching \
     --module="${WORKING_DIR}/punet.vmfb" \
     --parameters=model="${IRPA}" \
-    --function=main \
+    --function=run_forward \
     --input=1x4x128x128xf16 \
-    --input=1xsi32 \
     --input=2x64x2048xf16 \
     --input=2x1280xf16 \
     --input=2x6xf16 \
     --input=1xf16 \
+    --input=1xsi64 \
+    --input=100xf32 \
+    --input=100xf32 \
     --benchmark_repetitions=3
 }
 
