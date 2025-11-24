@@ -20,7 +20,7 @@ readonly USE_TRACY="${USE_TRACY:-0}"
 # IRPA file: https://sharkpublic.blob.core.windows.net/sharkpublic/sdxl-scripts-weights/sdxl_unet_int8_dataset.irpa
 # Size: 2614669312
 # md5sum: b9b2971e18d1dbcbbd0645263d8a8ac5
-readonly IRPA_PATH_PREFIX="${2:-/data/shark}"
+readonly IRPA_PATH_PREFIX="${2:-/data/amdshark}"
 readonly IRPA="${IRPA_PATH_PREFIX}/sdxl_unet_int8_dataset.irpa"
 
 run_benchmark() {

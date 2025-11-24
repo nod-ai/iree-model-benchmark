@@ -37,7 +37,7 @@ INPUTS="--input=@${INPUT_PATH}/run_forward_input_0.npy \
 # IRPA file: https://sharkpublic.blob.core.windows.net/sharkpublic/sdxl-scripts-weights/punet_fp8_weights.irpa
 # Size: 2615300096
 # md5sum: 42df7496dc012548e5fc1a198cb1161d
-readonly IRPA_PATH_PREFIX="${3:-/data/shark}"
+readonly IRPA_PATH_PREFIX="${3:-/data/amdshark}"
 readonly IRPA="${IRPA_PATH_PREFIX}/punet_fp8_weights.irpa"
 
 run_benchmark() {
