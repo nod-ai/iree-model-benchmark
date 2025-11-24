@@ -7,7 +7,7 @@ enough proxy for real-world deployment.
 
 ## Models
 
-All the models below were exported using [SHARK AI](https://github.com/nod-ai/shark-ai).
+All the models below were exported using [AMD-SHARK AI](https://github.com/nod-ai/amd-shark-ai).
 
 The currently supported models are:
 * SDXL (fp16, int8, fp8)

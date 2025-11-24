@@ -32,7 +32,7 @@ readonly -a INPUTS=(
   "--input=@${INPUT_PATH}/prefill_cs_f16_shard_7.npy"
 )
 
-readonly IRPA_PATH="${2:-/shark-dev/llama3.1/405b/instruct/weights/fp16/tp8}"
+readonly IRPA_PATH="${2:-/amdshark-dev/llama3.1/405b/instruct/weights/fp16/tp8}"
 
 # Base IRPA file:
 # Size : 524288

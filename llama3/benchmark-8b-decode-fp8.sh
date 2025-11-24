@@ -36,7 +36,7 @@ readonly -a INPUTS=(
 # IRPA file:
 # Size: 16061181952
 # md5sum: 8f4685d6799298609152dd509ba32e88
-readonly IRPA="${3:-/data/shark/8b_fp8.irpa}"
+readonly IRPA="${3:-/data/amdshark/8b_fp8.irpa}"
 
 echo "Using IRPA file:"
 stat -c "%y %s %n" "${IRPA}"

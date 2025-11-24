@@ -30,7 +30,7 @@ readonly -a INPUTS=(
   "--input=@${INPUT_PATH}/decode_input4_kv_cache_state.npy"
 )
 
-readonly IRPA_PATH="${2:-/shark-dev/llama3.1/405b/instruct/weights/fp4/fp4_2025_07_10_fn.irpa}"
+readonly IRPA_PATH="${2:-/amdshark-dev/llama3.1/405b/instruct/weights/fp4/fp4_2025_07_10_fn.irpa}"
 
 echo "Using IRPA file:"
 stat -c "%y %s %n" "${IRPA_PATH}"

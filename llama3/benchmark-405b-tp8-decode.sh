@@ -14,7 +14,7 @@ readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null &
 readonly WORKING_DIR="${WORKING_DIR:-${SCRIPT_DIR}/tmp}"
 readonly PREFIX="${PREFIX:-base}"
 readonly IREE_BENCHMARK="$(which iree-benchmark-module)"
-readonly INPUT_PATH="${INPUT_PATH:-/shark-dev/llama3.1/405b/decode_args_bs4_2048_stride_32_tp8}"
+readonly INPUT_PATH="${INPUT_PATH:-/amdshark-dev/llama3.1/405b/decode_args_bs4_2048_stride_32_tp8}"
 readonly USE_TRACY="${USE_TRACY:-0}"
 readonly IREE_TRACY_CAPTURE="$(which iree-tracy-capture)"
 
@@ -33,7 +33,7 @@ readonly -a INPUTS=(
   "--input=@${INPUT_PATH}/cs_f16_shard_7.npy"
 )
 
-readonly IRPA_PATH="${2:-/shark-dev/llama3.1/405b/instruct/weights/fp16/tp8}"
+readonly IRPA_PATH="${2:-/amdshark-dev/llama3.1/405b/instruct/weights/fp16/tp8}"
 
 # Base IRPA file:
 # Size : 524288
