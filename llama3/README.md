@@ -12,6 +12,7 @@
    * fp16: `./compile-8b-fp16.sh gfx942`
    * fp8: `./compile-8b-fp8.sh gfx942`
    * 70b_fp4 with asm kernel: `./compile-70b-fp4.sh gfx950`
+   * 70b_fp4 with mlir kernel: `MLIR_FILE=70b_fp4 ./compile-70b-fp4.sh gfx950`
    * 405b_fp4 with asm kernel: `./compile-405b-fp4.sh gfx950`
    * 405b_fp4 with mlir kernel: `MLIR_FILE=405b_fp4 ./compile-405b-fp4.sh gfx950`
 1. Benchmark prefill:
