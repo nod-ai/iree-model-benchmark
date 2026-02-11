@@ -30,7 +30,7 @@ mkdir -p tmp
 
 "$IREE_COMPILE" "$INPUT" \
   --iree-hal-target-backends=rocm \
-  --iree-hip-target=$CHIP \
+  --iree-rocm-target=$CHIP \
   --iree-hal-target-device=hip \
   --iree-opt-level=O3 \
   --iree-hal-indirect-command-buffers=true \

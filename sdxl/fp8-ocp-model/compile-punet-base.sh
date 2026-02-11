@@ -29,7 +29,7 @@ set -x
 
 "$IREE_COMPILE" "$INPUT" \
     --iree-hal-target-backends=rocm \
-    --iree-hip-target=$CHIP \
+    --iree-rocm-target=$CHIP \
     --iree-execution-model=async-external \
     --iree-global-opt-propagate-transposes=1 \
     --iree-opt-const-eval=0 \

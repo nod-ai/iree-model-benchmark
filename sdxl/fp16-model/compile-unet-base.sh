@@ -31,13 +31,13 @@ set -x
 
 "$IREE_COMPILE" "$INPUT" \
     --iree-hal-target-backends=rocm \
-    --iree-hip-target="$CHIP" \
-    --iree-hip-bc-dir="$(hipconfig --rocmpath)/amdgcn/bitcode" \
+    --iree-rocm-target="$CHIP" \
+    --iree-rocm-bc-dir="$(hipconfig --rocmpath)/amdgcn/bitcode" \
     --iree-global-opt-propagate-transposes=true \
     --iree-opt-outer-dim-concat=true \
     --iree-opt-const-eval=false \
     --iree-opt-data-tiling=false \
-    --iree-hip-waves-per-eu=2 \
+    --iree-rocm-waves-per-eu=2 \
     --iree-vm-target-truncate-unsupported-floats \
     --iree-codegen-llvmgpu-use-vector-distribution \
     --iree-llvmgpu-enable-prefetch \

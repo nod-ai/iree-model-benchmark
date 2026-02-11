@@ -28,14 +28,14 @@ shift 3
 set -x
 
 COMPILER_FLAGS=(
-    "--iree-hip-target=$CHIP" \
+    "--iree-rocm-target=$CHIP" \
     "--iree-hal-target-device=hip" \
     "--iree-opt-level=O3" \
     "--iree-dispatch-creation-propagate-collapse-across-expands=true" \
     "--iree-hal-indirect-command-buffers=true" \
     "--iree-stream-resource-memory-model=discrete" \
-    "--iree-hip-enable-tensor-ukernels" \
-    "--iree-hip-specialize-dispatches" \
+    "--iree-rocm-enable-tensor-ukernels" \
+    "--iree-rocm-specialize-dispatches" \
     "--iree-hal-memoization=true" \
     "--iree-stream-affinity-solver-max-iterations=1024")
 

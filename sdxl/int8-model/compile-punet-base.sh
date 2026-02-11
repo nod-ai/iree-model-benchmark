@@ -43,7 +43,7 @@ set -x
 CMD_ARGS=(
     "$IREE_COMPILE" "$INPUT"
     --iree-hal-target-backends=rocm
-    --iree-hip-target=$CHIP
+    --iree-rocm-target=$CHIP
     --iree-execution-model=async-external
     --iree-opt-level=O3
     --iree-vm-target-truncate-unsupported-floats
