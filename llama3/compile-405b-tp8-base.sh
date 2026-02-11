@@ -28,7 +28,7 @@ shift 3
 set -x
 
 COMPILER_FLAGS=(
-    "--iree-hip-target=$CHIP" \
+    "--iree-rocm-target=$CHIP" \
     "--iree-hal-target-device=\"hip[0]\"" \
     "--iree-hal-target-device=\"hip[1]\"" \
     "--iree-hal-target-device=\"hip[2]\"" \
@@ -40,10 +40,10 @@ COMPILER_FLAGS=(
     "--iree-opt-level=O3" \
     "--iree-dispatch-creation-propagate-collapse-across-expands=true" \
     "--iree-codegen-enable-default-tuning-specs=true" \
-    "--iree-hip-enable-tensor-ukernels" \
+    "--iree-rocm-enable-tensor-ukernels" \
     "--iree-hal-indirect-command-buffers=true" \
     "--iree-stream-resource-memory-model=discrete" \
-    "--iree-hip-specialize-dispatches" \
+    "--iree-rocm-specialize-dispatches" \
     "--iree-hal-memoization=true" \
     "--iree-stream-affinity-solver-max-iterations=1024")
 
